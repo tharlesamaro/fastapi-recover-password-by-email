@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+alembic = "*"
+email-validator = "*"
+sqlalchemy = "*"
+fastapi-mail = "*"
+jinja2 = "*"
+fastapi-sqlalchemy = "*"
+pyjwt = "*"
+argon2-cffi = "*"
+python-dotenv = "*"
+fastapi-pagination = "*"
+
+[dev-packages]
+black = "*"
+isort = "*"
+flake8 = "*"
+
+[scripts]
+local = "uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload"
+
+[requires]
+python_version = "3.10"
