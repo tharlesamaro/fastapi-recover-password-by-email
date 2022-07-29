@@ -3,7 +3,11 @@ from typing import Any
 from uuid import uuid4
 
 import jwt
-from jwt.exceptions import DecodeError, ExpiredSignatureError, InvalidSignatureError
+from jwt.exceptions import (
+    DecodeError,
+    ExpiredSignatureError,
+    InvalidSignatureError,
+)
 from pydantic import EmailStr
 
 from app.data import User, settings
@@ -15,7 +19,9 @@ class JwtTokenizer:
         self.algorithm = settings.JWT_ALGORITHM
         self.jwt_secret = settings.JWT_SECRET
         self.jwt_expire_hours = settings.JWT_EXPIRE_HOURS
-        self.email_reset_token_expire_hours = settings.EMAIL_RESET_TOKEN_EXPIRE_HOURS
+        self.email_reset_token_expire_hours = (
+            settings.EMAIL_RESET_TOKEN_EXPIRE_HOURS
+        )
 
     def _get_registered_claim_names(
         self, expire_hours: int
@@ -52,11 +58,15 @@ class JwtTokenizer:
 
     def generate_access_token(self, user_id: int) -> str:
         payload = {"uid": user_id}
-        registered_claim_names = self._get_registered_claim_names(self.jwt_expire_hours)
+        registered_claim_names = self._get_registered_claim_names(
+            self.jwt_expire_hours
+        )
         token = self.encode(payload, registered_claim_names)
         return token
 
-    def generate_password_reset_token(self, user_id: int, user_email: EmailStr) -> str:
+    def generate_password_reset_token(
+        self, user_id: int, user_email: EmailStr
+    ) -> str:
         payload = {"uid": user_id, "sub": user_email}
         registered_claim_names = self._get_registered_claim_names(
             self.email_reset_token_expire_hours

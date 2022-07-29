@@ -6,13 +6,13 @@ from app.data.models import User
 from app.infra.repositories import UserRepository
 from app.utils import tokenizer
 
-auth = HTTPBearer()
+http_bearer = HTTPBearer()
 
 
-async def auth_token(
-    credentials: HTTPAuthorizationCredentials = Depends(auth),
+async def auth_user(
+    http_auth: HTTPAuthorizationCredentials = Depends(http_bearer),
 ) -> User:
-    token = credentials.credentials
+    token = http_auth.credentials
     decoded_token = tokenizer.decode(token)
 
     invalid_token = not (

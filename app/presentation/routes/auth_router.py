@@ -2,7 +2,13 @@ from typing import Any
 
 from fastapi import APIRouter
 
-from app.data import AuthSchema, AuthVO, MsgVO, UserEmailSchema, UserResetPasswordSchema
+from app.data import (
+    AuthSchema,
+    AuthVO,
+    MsgVO,
+    UserEmailSchema,
+    UserResetPasswordSchema,
+)
 from app.presentation.routes._responses import HTTP_RESPONSES, get_responses
 from app.usecases import auth_usecase
 

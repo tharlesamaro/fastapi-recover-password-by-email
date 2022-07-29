@@ -40,7 +40,9 @@ class UserCreateSchema(BaseModel):
         "password_confirmation", pre=True, allow_reuse=True
     )(matchpwd)
 
-    _checkpwd_password = validator("password", pre=True, allow_reuse=True)(checkpwd)
+    _checkpwd_password = validator("password", pre=True, allow_reuse=True)(
+        checkpwd
+    )
 
 
 class UserResetPasswordSchema(BaseModel):
@@ -53,7 +55,9 @@ class UserResetPasswordSchema(BaseModel):
         "password_confirmation", pre=True, allow_reuse=True
     )(matchpwd)
 
-    _checkpwd_password = validator("password", pre=True, allow_reuse=True)(checkpwd)
+    _checkpwd_password = validator("password", pre=True, allow_reuse=True)(
+        checkpwd
+    )
 
 
 class UserEmailSchema(BaseModel):

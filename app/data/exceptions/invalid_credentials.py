@@ -2,7 +2,9 @@ from app.data.types import ModelType
 
 
 class InvalidCredentials(Exception):
-    def __init__(self, obj: str | ModelType = "invalid credentials", info: str = ""):
+    def __init__(
+        self, obj: str | ModelType = "invalid credentials", info: str = ""
+    ):
         self.name: str = str(obj)
         self.info = info
 

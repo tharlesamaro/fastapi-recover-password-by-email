@@ -7,7 +7,7 @@ load_dotenv()
 class MailConfig(BaseSettings):
     MAIL_USERNAME: str = ""
     MAIL_PASSWORD: str = ""
-    MAIL_FROM: str
+    MAIL_FROM: EmailStr
     MAIL_PORT: int
     MAIL_SERVER: str
     MAIL_FROM_NAME: str = ""

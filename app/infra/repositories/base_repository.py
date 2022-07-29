@@ -22,7 +22,9 @@ class BaseRepository(Generic[Model]):
             if "unique constraint" in str(exc.orig).lower():
                 raise DuplicateEntry(self.model_type) from exc
             if "foreign key constraint" in str(exc.orig).lower():
-                field: str = re.findall(r"key \((\w*)\)=", str(exc.orig).lower())[0]
+                field: str = re.findall(
+                    r"key \((\w*)\)=", str(exc.orig).lower()
+                )[0]
                 field = field.removesuffix("_id")
                 raise NoResultFound(field) from exc
             raise
@@ -35,9 +37,12 @@ class BaseRepository(Generic[Model]):
 
     def get_by(self, **fields: Any) -> Model | None:
         statement = db.session.query(self.model_type)
-        for field in filter(lambda f: f in self.model_type.__mapper__.columns, fields):
+        for field in filter(
+            lambda f: f in self.model_type.__mapper__.columns, fields
+        ):
             statement = statement.where(
-                object.__getattribute__(self.model_type, field) == fields[field]
+                object.__getattribute__(self.model_type, field)
+                == fields[field]
             )
         return statement.first()
 
