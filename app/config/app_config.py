@@ -7,6 +7,7 @@ load_dotenv()
 class AppConfig(BaseSettings):
     APP_NAME: str
     APP_DESCRIPTION: str
+    APP_URL: str
     APP_ENV: str = "production"
 
 

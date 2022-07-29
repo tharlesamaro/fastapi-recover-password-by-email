@@ -10,8 +10,7 @@ from jwt.exceptions import (
 )
 from pydantic import EmailStr
 
-from app.data import User, settings
-from app.data.models import User
+from app.data import settings
 
 
 class JwtTokenizer:
